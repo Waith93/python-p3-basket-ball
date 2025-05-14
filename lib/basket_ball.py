@@ -183,8 +183,10 @@ def game_dict():
         }
     }
 
+game = game_dict()
+
 def get_all_players():
-    game = game_dict()
+    
     return game['home']['players'] + game['away']['players']
 
 def num_points_per_game(name):
@@ -197,31 +199,33 @@ def player_age(name):
         if player['name'] == name:
             return player['age']
 
+  #print(player_age("Stephen Curry"))
+
 def team_colors(team_name):
-    game = game_dict()
+
     for team in game.values():
         if team['team_name'] == team_name:
             return team['colors']
         
 def team_names():
-    game = game_dict()
+
     return [game['home']['team_name'], game['away']['team_name']]
 
 def player_numbers(team_name):
-    game = game_dict()
+
     for team in game.values():
         if team['team_name'] == team_name:
             return [player['number'] for player in team['players']]
 
 def player_stats(name):
-    game = game_dict()
+
     for team in game.values():
         for player in team['players']:
             if player['name'] == name:
                 return player
 
 def average_rebounds_by_shoe_brand():
-    game = game_dict()
+
     rebounds_by_brand = {}
 
     for team in game.values():
@@ -239,11 +243,11 @@ def average_rebounds_by_shoe_brand():
         print(f'{brand}:  {average_rebounds:.2f}')
 
 def most_career_points():
-    game = game_dict()
+
     top_scorer = ""
     max_points = 0
 
-    for team in game_values():
+    for team in game.values():
         for player in team['players']:
             if player['career_points'] > max_points:
                 max_points = player['career_points']
@@ -252,12 +256,12 @@ def most_career_points():
     return top_scorer
 
 def longest_name():
-    game = game_dict()
+
     longest_name = ""
 
-    for team in game_values():
-        for player_name in team['players']:
-            if len(player_name) > len(longest_name):
-                longest_name = player_name
+    for team in game.values():
+        for player in team['players']:
+            if len(player['name']) > len(longest_name):
+                longest_name = player['name']
         
-    print(longest_name)    
+    print(longest_name)
